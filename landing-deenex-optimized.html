@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founding Head of Marketing — Deenex</title>
+  <meta name="description" content="Sumate a Deenex como Founding Head of Marketing. Construí el área de marketing desde cero en la plataforma que está redefiniendo el canal propio en LATAM." />
+
+  <!-- Fonts: DM Sans + Inter (Deenex brand) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500;1,9..40,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#5423E7', light: '#F0ECFF', surface: '#F0EDFF' },
+            ink: { DEFAULT: '#121217', 2: '#6C6C89', 3: '#8A87A0' },
+            border: { DEFAULT: '#E8E3FF' },
+          },
+          fontFamily: {
+            heading: ['"DM Sans"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- React 18 -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #F0EDFF; color: #121217; overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F0EDFF; }
+    ::-webkit-scrollbar-thumb { background: #5423E7; border-radius: 999px; }
+
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.4); } }
+    @keyframes scroll-hint { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(8px); opacity: 1; } }
+
+    .btn-primary {
+      position: relative; overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { transform: scale(1.03); box-shadow: 0 20px 40px -8px rgba(84,35,231,0.3); }
+
+    .btn-outline {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    }
+    .btn-outline:hover { transform: scale(1.03); background: rgba(84,35,231,0.06); }
+
+    .card-hover {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px -15px rgba(84,35,231,0.12);
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    /* Deenex Logo SVG — white fill variant */
+    const DeenexLogoWhite = ({ className = '' }) => (
+      <svg viewBox="0 0 692 138" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M307.497 99.8052H228.728V40.7717H307.497V54.5347H246.299V64.3159H305.852V75.6551H246.299V86.0422H307.497V99.8052ZM394.732 99.8052H315.963V40.7717H394.732V54.5347H333.535V64.3159H393.088V75.6551H333.535V86.0422H394.732V99.8052ZM420.771 99.8052H403.199V40.7717H423.281L474.005 80.6756V40.7717H491.576V99.8052H471.927L420.771 59.2089V99.8052ZM579.685 99.8052H500.916V40.7717H579.685V54.5347H518.488V64.3159H578.041V75.6551H518.488V86.0422H579.685V99.8052ZM586.161 40.7717H612.562L637.231 61.0266L662.074 40.7717H687.435L651.081 70.2019L687.782 99.8052H661.121L636.885 79.81L612.215 99.8052H586.075L622.862 70.4616L586.161 40.7717Z" fill="white"/>
+        <rect x="0.0537109" y="36.6848" width="22.1955" height="22.1955" fill="white"/>
+        <rect x="35.4834" y="53.4961" width="27.679" height="27.679" fill="white"/>
+        <rect x="6.40088" y="82.4802" width="17.9423" height="17.9423" fill="white"/>
+        <rect x="8.01123" y="8.17822" width="13.2467" height="13.2467" fill="white"/>
+        <rect x="11.3057" y="111.694" width="8.5971" height="8.5971" fill="white"/>
+        <path d="M18.7188 95.3599L35.4831 105.676" stroke="white" strokeWidth="6.87768"/>
+        <path d="M20.2231 86.333L37.8472 76.6613" stroke="white" strokeWidth="6.87768"/>
+        <path d="M18.0742 40.5535L37.2028 30.4519" stroke="white" strokeWidth="6.87768"/>
+        <path d="M202.054 68.6051C202.054 16.7663 170.775 0.554199 123.656 0.554199H31.2217V35.3802H119.846C148.117 35.3802 159.947 41.9852 159.947 68.6051C159.947 95.6253 148.117 102.23 119.846 102.23H31.2217V137.056H123.656C170.374 137.056 202.054 122.045 202.054 68.6051Z" fill="white"/>
+      </svg>
+    );
+
+    /* Deenex Logo — dark/primary fill variant */
+    const DeenexLogoDark = ({ className = '' }) => (
+      <svg viewBox="0 0 692 138" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M307.497 99.8052H228.728V40.7717H307.497V54.5347H246.299V64.3159H305.852V75.6551H246.299V86.0422H307.497V99.8052ZM394.732 99.8052H315.963V40.7717H394.732V54.5347H333.535V64.3159H393.088V75.6551H333.535V86.0422H394.732V99.8052ZM420.771 99.8052H403.199V40.7717H423.281L474.005 80.6756V40.7717H491.576V99.8052H471.927L420.771 59.2089V99.8052ZM579.685 99.8052H500.916V40.7717H579.685V54.5347H518.488V64.3159H578.041V75.6551H518.488V86.0422H579.685V99.8052ZM586.161 40.7717H612.562L637.231 61.0266L662.074 40.7717H687.435L651.081 70.2019L687.782 99.8052H661.121L636.885 79.81L612.215 99.8052H586.075L622.862 70.4616L586.161 40.7717Z" fill="#121217"/>
+        <rect x="0.0537109" y="36.6848" width="22.1955" height="22.1955" fill="#5423E7"/>
+        <rect x="35.4834" y="53.4961" width="27.679" height="27.679" fill="#5423E7"/>
+        <rect x="6.40088" y="82.4802" width="17.9423" height="17.9423" fill="#5423E7"/>
+        <rect x="8.01123" y="8.17822" width="13.2467" height="13.2467" fill="#5423E7"/>
+        <rect x="11.3057" y="111.694" width="8.5971" height="8.5971" fill="#5423E7"/>
+        <path d="M18.7188 95.3599L35.4831 105.676" stroke="#5423E7" strokeWidth="6.87768"/>
+        <path d="M20.2231 86.333L37.8472 76.6613" stroke="#5423E7" strokeWidth="6.87768"/>
+        <path d="M18.0742 40.5535L37.2028 30.4519" stroke="#5423E7" strokeWidth="6.87768"/>
+        <path d="M202.054 68.6051C202.054 16.7663 170.775 0.554199 123.656 0.554199H31.2217V35.3802H119.846C148.117 35.3802 159.947 41.9852 159.947 68.6051C159.947 95.6253 148.117 102.23 119.846 102.23H31.2217V137.056H123.656C170.374 137.056 202.054 122.045 202.054 68.6051Z" fill="#121217"/>
+      </svg>
+    );
+
+    /* ============================================================
+       NAVBAR — Purple pill, Deenex style
+    ============================================================ */
+    function Navbar() {
+      const [scrolled, setScrolled] = useState(false);
+      const [menuOpen, setMenuOpen] = useState(false);
+
+      useEffect(() => {
+        const h = () => setScrolled(window.scrollY > 60);
+        window.addEventListener('scroll', h, { passive: true });
+        return () => window.removeEventListener('scroll', h);
+      }, []);
+
+      return (
+        <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-6xl transition-all duration-500 ease-out" style={{ borderRadius: '60px' }}>
+          <div className={`px-5 py-3 md:px-8 md:py-3.5 flex items-center justify-between transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl border border-primary/10 shadow-lg shadow-primary/5' : 'bg-primary border border-primary'}`}
+               style={{ borderRadius: '60px' }}>
+            {scrolled
+              ? <DeenexLogoDark className="h-5 md:h-6 w-auto" />
+              : <DeenexLogoWhite className="h-5 md:h-6 w-auto" />
+            }
+
+            <div className="hidden md:flex items-center gap-6">
+              {['Quiénes somos', 'La oportunidad', 'El rol', 'Compensación'].map((label, i) => (
+                <a key={i} href={`#${['deenex','oportunidad','rol','compensacion'][i]}`}
+                   className={`text-sm font-medium transition-colors duration-300 ${scrolled ? 'text-ink/70 hover:text-primary' : 'text-white/80 hover:text-white'}`}>
+                  {label}
+                </a>
+              ))}
+              <a href="#aplicar" className={`btn-primary px-5 py-2.5 text-sm font-semibold rounded-lg ${scrolled ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
+                Quiero aplicar
+              </a>
+            </div>
+
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2" aria-label="Menu">
+              <div className="flex flex-col gap-1.5">
+                {[0,1,2].map(i => (
+                  <span key={i} className={`block w-5 h-0.5 transition-all duration-300 ${scrolled ? 'bg-ink' : 'bg-white'} ${menuOpen && i === 0 ? 'rotate-45 translate-y-2' : ''} ${menuOpen && i === 1 ? 'opacity-0' : ''} ${menuOpen && i === 2 ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                ))}
+              </div>
+            </button>
+          </div>
+
+          {menuOpen && (
+            <div className="md:hidden mt-2 bg-white/95 backdrop-blur-xl border border-primary/10 shadow-xl p-6 flex flex-col gap-4" style={{ borderRadius: '20px' }}>
+              <a href="#deenex" onClick={() => setMenuOpen(false)} className="text-ink font-heading font-medium">Quiénes somos</a>
+              <a href="#oportunidad" onClick={() => setMenuOpen(false)} className="text-ink font-heading font-medium">La oportunidad</a>
+              <a href="#rol" onClick={() => setMenuOpen(false)} className="text-ink font-heading font-medium">El rol</a>
+              <a href="#compensacion" onClick={() => setMenuOpen(false)} className="text-ink font-heading font-medium">Compensación</a>
+              <a href="#aplicar" onClick={() => setMenuOpen(false)} className="btn-primary text-center px-5 py-3 bg-primary text-white font-semibold rounded-lg mt-2">Quiero aplicar</a>
+            </div>
+          )}
+        </nav>
+      );
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    function Hero() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.timeline({ defaults: { ease: 'power3.out' } })
+            .from('.hero-el', { opacity: 0, y: 30, duration: 0.7, stagger: 0.12, delay: 0.3 });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section ref={ref} className="relative min-h-[100dvh] flex flex-col justify-center pt-28 pb-16 px-5 md:px-10 overflow-hidden" id="hero">
+          {/* Purple gradient background */}
+          <div className="absolute inset-0 bg-primary"></div>
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #5423E7 0%, #3a15b0 40%, #2a0f8a 100%)' }}></div>
+          <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: 'linear-gradient(to top, #F0EDFF, transparent)' }}></div>
+
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+
+          <div className="relative z-10 max-w-6xl mx-auto w-full text-center">
+            <div className="hero-el inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-8">
+              <span className="w-2 h-2 rounded-full bg-green-400" style={{ animation: 'pulse-dot 2s infinite' }}></span>
+              <span className="text-white/80 text-xs font-mono font-medium tracking-wider uppercase">Posición abierta</span>
+            </div>
+
+            <div className="hero-el mb-4">
+              <span className="text-white/50 text-sm md:text-base font-sans tracking-[0.25em] uppercase">—— Founding ——</span>
+            </div>
+
+            <h1 className="hero-el font-heading text-white leading-[0.95] tracking-[-0.05em] mb-8 text-5xl md:text-7xl lg:text-8xl" style={{ fontWeight: 800 }}>
+              Head of{' '}
+              <span className="italic" style={{ color: '#c4b5fd', fontWeight: 500 }}>Marketing</span>
+            </h1>
+
+            <p className="hero-el text-white/60 text-base md:text-xl leading-relaxed max-w-2xl mx-auto mb-10 font-sans">
+              Construí el área de marketing desde cero en la plataforma que está redefiniendo el canal propio para cadenas gastronómicas en LATAM.
+            </p>
+
+            <div className="hero-el flex flex-col sm:flex-row gap-4 justify-center mb-16">
+              <a href="#aplicar" className="btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white text-primary font-heading font-bold text-base rounded-lg shadow-xl shadow-black/20">
+                Quiero aplicar
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="#oportunidad" className="btn-outline inline-flex items-center justify-center gap-2 px-8 py-4 text-white/80 font-heading font-semibold text-base rounded-lg border border-white/20">
+                Conocer más
+              </a>
+            </div>
+
+            <div className="hero-el flex flex-wrap gap-8 md:gap-16 justify-center">
+              {[
+                { val: 'Founding', sub: 'Rol de construcción' },
+                { val: '+ Equity', sub: '0.5% – 2.5%' },
+                { val: 'LATAM', sub: 'AR → BR → MX' },
+              ].map((m, i) => (
+                <div key={i} className="text-center">
+                  <p className="font-heading font-extrabold text-white text-xl md:text-2xl tracking-tight">{m.val}</p>
+                  <p className="text-white/40 text-xs font-sans mt-1">{m.sub}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       ABOUT DEENEX — Who we are
+    ============================================================ */
+    function AboutDeenex() {
+      const ref = useRef(null);
+
+      return (
+        <section ref={ref} id="deenex" className="py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-6xl mx-auto">
+            {/* Section badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
+              <span className="text-primary text-xs font-mono font-medium tracking-wider uppercase">Quiénes somos</span>
+            </div>
+
+            {/* Headline + intro */}
+            <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-16">
+              <div>
+                <h2 className="font-heading font-extrabold text-ink leading-[1.05] tracking-[-0.03em] mb-5"
+                    style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}>
+                  Deenex es el{' '}
+                  <span className="italic font-medium text-primary">sistema operativo</span>{' '}
+                  para cadenas gastronómicas.
+                </h2>
+                <p className="text-ink-2 text-base leading-relaxed font-sans">
+                  Somos una plataforma tecnológica que permite a cadenas de restaurantes lanzar su propio canal de ventas digital, capturar datos de sus clientes, fidelizarlos y comunicarse de forma directa. No vendemos "una app" — vendemos un sistema para transformar ventas en base de datos propia y esa base en recurrencia y rentabilidad.
+                </p>
+              </div>
+
+              {/* The Deenex Loop */}
+              <div className="p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
+                <p className="font-mono text-primary/60 text-xs tracking-wider uppercase mb-4">El loop Deenex</p>
+                <div className="space-y-3">
+                  {[
+                    { step: '01', label: 'Canal propio de ventas', desc: 'Web app de marca, omnicanal: salón, takeaway, delivery' },
+                    { step: '02', label: 'Captura de datos', desc: 'Cada comprador se convierte en usuario registrado' },
+                    { step: '03', label: 'Puntos y fidelización', desc: 'Recompensas, beneficios, promos, cumpleaños' },
+                    { step: '04', label: 'Segmentación y campañas', desc: 'Push, WhatsApp, banners personalizados por comportamiento' },
+                    { step: '05', label: 'Más recurrencia', desc: 'Cada ciclo genera más datos, más recompra, más rentabilidad' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="font-mono text-xs font-bold text-primary/40 mt-0.5 flex-shrink-0">{item.step}</span>
+                      <div>
+                        <p className="font-heading font-bold text-ink text-sm leading-tight">{item.label}</p>
+                        <p className="text-ink-2 text-xs font-sans leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Traction metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              {[
+                { val: '100+', label: 'Puntos de venta activos' },
+                { val: '20K+', label: 'Usuarios en la plataforma' },
+                { val: '5+', label: 'Cadenas reconocidas' },
+                { val: 'Feb 2026', label: 'Producto estable' },
+              ].map((m, i) => (
+                <div key={i} className="p-5 rounded-2xl bg-white border border-border text-center card-hover">
+                  <p className="font-heading font-extrabold text-primary text-2xl md:text-3xl tracking-tight mb-1">{m.val}</p>
+                  <p className="text-ink-2 text-xs font-sans">{m.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Clients strip */}
+            <div className="mb-14">
+              <p className="text-center text-ink-3 text-xs font-mono tracking-wider uppercase mb-5">Marcas que ya usan Deenex</p>
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                {['Somos Palta', 'La Fábrica', 'QUEM', 'Monti', 'Coquitos'].map((name, i) => (
+                  <div key={i} className="px-5 py-2.5 rounded-full bg-white border border-border text-ink font-heading font-semibold text-sm">
+                    {name}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Stage + Team */}
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* Current stage */}
+              <div className="p-6 md:p-7 rounded-[28px] bg-primary/[0.04] border border-primary/10 card-hover">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-green-500" style={{ animation: 'pulse-dot 2s infinite' }}></span>
+                  <span className="font-mono text-primary/60 text-xs tracking-wider uppercase">Etapa actual</span>
+                </div>
+                <h3 className="font-heading font-bold text-ink text-lg mb-3 tracking-tight">Producto estable. Listo para escalar.</h3>
+                <p className="text-ink-2 text-sm leading-relaxed font-sans mb-4">
+                  Tenemos producto funcionando desde febrero 2026, clientes con múltiples sucursales reconocidos en el mercado gastronómico argentino, y un plan claro de expansión regional.
+                </p>
+                <div className="space-y-2">
+                  {[
+                    'Producto estable y en evolución constante',
+                    'Clientes activos con muchas sucursales',
+                    'Modelo de negocio validado por suscripción',
+                    'Expansión: Argentina → Brasil → México',
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-2.5">
+                      <span className="text-primary mt-0.5 flex-shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </span>
+                      <span className="text-ink-2 text-sm font-sans">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Team */}
+              <div className="p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
+                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-4">El equipo fundador</p>
+                <p className="text-ink-2 text-sm leading-relaxed font-sans mb-5">
+                  Somos un equipo chico, enfocado y con mucha ambición. Cada persona tiene impacto directo en lo que construimos.
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { name: 'Alan Tapia', role: 'Cofundador', area: 'Comercial, ventas, expansión' },
+                    { name: 'Joaquín Lombardi', role: 'Cofundador', area: 'Estrategia, producto, ops' },
+                    { name: 'Thainá', role: 'Operaciones', area: 'Coordinación, procesos' },
+                    { name: 'Leandro', role: 'CTO', area: 'Tecnología, arquitectura, producto' },
+                    { name: 'Agustín', role: 'Desarrollo', area: 'Producto, features' },
+                    { name: 'Santiago', role: 'Desarrollo', area: 'Sistema, soporte técnico' },
+                  ].map((person, i) => (
+                    <div key={i} className="p-3 rounded-xl bg-primary-surface">
+                      <p className="font-heading font-bold text-ink text-sm leading-tight">{person.name}</p>
+                      <p className="text-primary text-xs font-medium">{person.role}</p>
+                      <p className="text-ink-3 text-[11px] font-sans mt-0.5">{person.area}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       OPPORTUNITY
+    ============================================================ */
+    function Opportunity() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.opp-r', { scrollTrigger: { trigger: ref.current, start: 'top 80%' }, y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section ref={ref} id="oportunidad" className="py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="opp-r inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
+              <span className="text-primary text-xs font-mono font-medium tracking-wider uppercase">La oportunidad</span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+              <div>
+                <h2 className="opp-r font-heading font-extrabold text-ink leading-[1.05] tracking-[-0.03em] mb-5"
+                    style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}>
+                  No buscamos a alguien para{' '}
+                  <span className="italic font-medium text-primary">"publicar en redes."</span>
+                </h2>
+                <p className="opp-r text-ink-2 text-base leading-relaxed font-sans">
+                  Buscamos a la persona que va a dominar una narrativa: independencia vs dependencia, datos propios vs datos prestados, recurrencia vs transacciones sueltas.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  { icon: '✓', title: 'Producto estable desde Feb 2026', desc: 'Clientes con múltiples sucursales, reconocidos en el mercado gastronómico argentino.' },
+                  { icon: '↗', title: 'Expansión LATAM en marcha', desc: 'Argentina primero, después Brasil y México. Queremos liderar la categoría de canal propio.' },
+                  { icon: '◎', title: 'Cercanía total con founders', desc: 'Trabajás mano a mano con el equipo fundador. Capacidad real de influir en posicionamiento.' },
+                ].map((card, i) => (
+                  <div key={i} className="opp-r p-6 rounded-2xl bg-white border border-border card-hover">
+                    <div className="flex items-start gap-4">
+                      <div className="w-9 h-9 rounded-xl bg-primary/8 flex items-center justify-center flex-shrink-0 text-primary font-bold text-sm">{card.icon}</div>
+                      <div>
+                        <h3 className="font-heading font-bold text-ink text-[15px] mb-1">{card.title}</h3>
+                        <p className="text-ink-2 text-sm leading-relaxed font-sans">{card.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       CONTEXT / MANIFESTO — Dark section
+    ============================================================ */
+    function Manifesto() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.mani-r', { scrollTrigger: { trigger: ref.current, start: 'top 75%' }, y: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section ref={ref} className="mx-4 md:mx-8 rounded-[32px] bg-primary py-20 md:py-28 px-6 md:px-12 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            <div className="mani-r inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-8">
+              <span className="text-white/80 text-xs font-mono font-medium tracking-wider uppercase">El contexto</span>
+            </div>
+
+            <h2 className="mani-r font-heading font-extrabold text-white leading-[1.1] tracking-[-0.03em] mb-6"
+                style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.6rem)' }}>
+              En LATAM, millones de negocios{' '}
+              <span className="italic font-medium" style={{ color: '#e0d4ff' }}>alquilan sus clientes</span>{' '}
+              a agregadores que cobran hasta 35% de comisión.
+            </h2>
+
+            <div className="mani-r w-12 h-0.5 bg-white/20 mx-auto mb-6"></div>
+
+            <p className="mani-r text-white/60 text-base leading-relaxed max-w-2xl mx-auto mb-10 font-sans">
+              Deenex construye el sistema que permite vender directo, sin comisiones, y transformar cada compra en recurrencia. Activamos bases de clientes con WhatsApp y Push.
+            </p>
+
+            <div className="mani-r grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+              <div className="p-6 rounded-2xl text-left bg-white/[0.08] border border-white/[0.12]">
+                <p className="font-mono text-white/40 text-xs mb-2 tracking-wider uppercase">Status quo</p>
+                <p className="font-heading font-bold text-white/70 text-base leading-snug">Comisiones del 12-35%.<br/>Clientes que no son tuyos.<br/>Datos que nunca ves.</p>
+              </div>
+              <div className="p-6 rounded-2xl text-left bg-white/15 border border-white/20">
+                <p className="font-mono text-white/80 text-xs mb-2 tracking-wider uppercase">Con Deenex</p>
+                <p className="font-heading font-bold text-white text-base leading-snug">Canal propio, sin comisión.<br/>Base de datos propia.<br/>Recurrencia activada.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       THE ROLE
+    ============================================================ */
+    function TheRole() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.role-r', { scrollTrigger: { trigger: ref.current, start: 'top 80%' }, y: 30, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      const areas = [
+        { area: 'Marca y posicionamiento', items: ['Construir narrativa clara y diferenciadora', 'Definir qué decimos y cómo lo decimos', 'Bajar identidad comunicacional firme'] },
+        { area: 'Founder brand', items: ['Estrategia de presencia pública de 2 founders', 'Posicionarlos como voces expertas en LinkedIn', 'Convertir visión y casos en contenido'] },
+        { area: 'Contenido y canales', items: ['Elegir canales y sostenerlos con ritmo', 'Sistema de contenido consistente y escalable', 'Transformar métricas y visión en piezas comunicables'] },
+        { area: 'Demanda y crecimiento', items: ['Armar funnel y mejorar inbound', 'Aumentar awareness y conversión con impacto medible', 'Posicionamiento en Google y LLMs'] },
+        { area: 'Comunidad y relaciones', items: ['Acercarnos a referentes y aliados', 'Podcast, colaboraciones, entrevistas', 'Construir visibilidad estratégica'] },
+        { area: 'Construcción del área', items: ['Proponer estructura y prioridades', 'Montar el área con mentalidad de dueño/a', 'Preparar para escalar internacionalmente'] },
+      ];
+
+      return (
+        <section ref={ref} id="rol" className="py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="role-r inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
+              <span className="text-primary text-xs font-mono font-medium tracking-wider uppercase">El rol</span>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-8 md:gap-14 mb-14">
+              <div className="md:col-span-2">
+                <h2 className="role-r font-heading font-extrabold text-ink leading-[1.05] tracking-[-0.03em] mb-4" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+                  No es un área armada.{' '}
+                  <span className="italic font-medium text-primary">Es crearla.</span>
+                </h2>
+                <p className="role-r text-ink-2 text-sm leading-relaxed font-sans">
+                  Definir el mensaje, elegir los canales correctos, construir el sistema de contenido, empujar la marca personal de los founders y transformar marketing en posicionamiento y demanda real.
+                </p>
+              </div>
+
+              <div className="md:col-span-3 grid sm:grid-cols-2 gap-4">
+                {areas.map((a, i) => (
+                  <div key={i} className="role-r p-5 rounded-2xl bg-white border border-border card-hover">
+                    <h3 className="font-heading font-bold text-ink text-sm mb-2.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+                      {a.area}
+                    </h3>
+                    <ul className="space-y-1">
+                      {a.items.map((item, j) => (
+                        <li key={j} className="text-ink-2 text-xs leading-relaxed font-sans flex items-start gap-2">
+                          <span className="text-ink-3 mt-0.5">—</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       PROFILE — Who we're looking for
+    ============================================================ */
+    function Profile() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.prof-r', { scrollTrigger: { trigger: ref.current, start: 'top 80%' }, y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section ref={ref} className="mx-4 md:mx-8 rounded-[32px] bg-primary py-20 md:py-28 px-6 md:px-12 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '28px 28px' }}></div>
+
+          <div className="relative z-10 max-w-5xl mx-auto">
+            <div className="prof-r inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-6">
+              <span className="text-white/70 text-xs font-mono font-medium tracking-wider uppercase">A quién buscamos</span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+              <div>
+                <h2 className="prof-r font-heading font-extrabold text-white leading-[1.1] tracking-[-0.03em] mb-5" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+                  Mentalidad de{' '}
+                  <span className="italic font-medium" style={{ color: '#c4b5fd' }}>constructor/a.</span>
+                </h2>
+                <p className="prof-r text-white/60 text-base leading-relaxed font-sans mb-5">
+                  Alguien que combine criterio estratégico con ejecución rápida. Que pueda ordenar mensajes complejos y volverlos simples. Que disfrute trabajar cerca de founders y tenga hambre de construir algo grande.
+                </p>
+                <p className="prof-r text-white/35 text-sm leading-relaxed font-sans">
+                  Nos sirve más un perfil con mentalidad emprendedora que alguien demasiado corporativo. Lo importante es si ya estuvo en lugares donde tuvo que moverse con velocidad y construir con mentalidad de dueño/a.
+                </p>
+              </div>
+
+              <div className="space-y-3.5">
+                {[
+                  { label: '+3 años', desc: 'en startups de software, SaaS o tecnología' },
+                  { label: 'Ownership', desc: 'real cerca de founders con impacto concreto' },
+                  { label: 'Emprendedor/a', desc: 'interno/a: hacer muchas cosas, priorizar y ejecutar' },
+                  { label: 'Visión integral', desc: 'del marketing con criterio amplio y estratégico' },
+                ].map((t, i) => (
+                  <div key={i} className="prof-r p-5 rounded-2xl bg-white/[0.07] border border-white/10 card-hover">
+                    <div className="flex items-center gap-4">
+                      <span className="font-heading font-extrabold text-white text-lg tracking-tight">{t.label}</span>
+                      <span className="text-white/50 text-sm font-sans">{t.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       COMPENSATION
+    ============================================================ */
+    function Compensation() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.comp-r', { scrollTrigger: { trigger: ref.current, start: 'top 80%' }, y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section ref={ref} id="compensacion" className="py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="comp-r inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
+              <span className="text-primary text-xs font-mono font-medium tracking-wider uppercase">Compensación</span>
+            </div>
+
+            <h2 className="comp-r font-heading font-extrabold text-ink leading-[1.1] tracking-[-0.03em] mb-3" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+              Un paquete diseñado para{' '}
+              <span className="italic font-medium text-primary">construir y escalar.</span>
+            </h2>
+            <p className="comp-r text-ink-2 text-base leading-relaxed max-w-2xl mb-10 font-sans">
+              Base fija + variable por resultados + escalera salarial + equity. Tu compensación crece con el impacto que generás.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {/* Base */}
+              <div className="comp-r p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
+                <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                </div>
+                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Sueldo base</p>
+                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">ARS 1.000.000</p>
+                <p className="text-ink-3 text-xs mb-3">mensuales (1 millón de pesos argentinos)</p>
+                <p className="text-ink-2 text-sm leading-relaxed font-sans">Sueldo fijo mensual garantizado. Se ajusta según experiencia, seniority y fit con la etapa de la compañía.</p>
+              </div>
+
+              {/* Variable — highlighted */}
+              <div className="comp-r p-6 md:p-7 rounded-[28px] bg-primary text-white card-hover relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #ffffff, transparent)', transform: 'translate(30%, -30%)' }}></div>
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center mb-4">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  </div>
+                  <p className="font-mono text-white/50 text-xs tracking-wider uppercase mb-2">Variable mensual</p>
+                  <p className="font-heading font-extrabold text-white text-2xl tracking-tight mb-0.5">Hasta 1M+</p>
+                  <p className="text-white/50 text-xs mb-2">mensuales adicionales</p>
+                  <p className="text-white/70 text-sm mb-4 font-sans leading-relaxed">Cada cuenta nueva que se cierre gracias a marketing genera un bono acumulable durante 6 meses. Cuantos más puntos de venta sumes, más ganás.</p>
+
+                  <div className="space-y-0">
+                    {[
+                      ['10-19 PdV', 'ARS 140K × 6m'],
+                      ['20+ PdV', 'ARS 280K × 6m'],
+                      ['50+ PdV', 'ARS 560K × 6m'],
+                      ['100+ PdV', 'ARS 1.05M × 6m'],
+                    ].map(([label, val], i) => (
+                      <div key={i} className="flex justify-between items-center py-2 border-b border-white/[0.12] last:border-0">
+                        <span className="text-white/60 text-xs font-sans">{label}</span>
+                        <span className="font-mono text-xs font-medium text-white">{val}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-white/40 text-xs mt-3 font-sans leading-relaxed">Se activa por cada cuenta cerrada cuyo origen sea marketing (inbound, contenido, campañas). El bono se cobra durante 6 meses por cada cuenta.</p>
+                </div>
+              </div>
+
+              {/* Equity */}
+              <div className="comp-r p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
+                <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+                </div>
+                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Equity + Escalera salarial</p>
+                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">0.5% — 2.5%</p>
+                <p className="text-ink-3 text-xs mb-3">de participación en Deenex</p>
+                <p className="text-ink-2 text-sm leading-relaxed font-sans mb-4">Participación accionaria real en la compañía, con vesting progresivo. Esto significa que sos dueño/a de una parte de Deenex y crecés junto con la empresa a medida que escala.</p>
+
+                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Escalera salarial</p>
+                <p className="text-ink-2 text-xs leading-relaxed font-sans mb-3">Tu sueldo base sube automáticamente cuando se alcanzan estos hitos de crecimiento:</p>
+                <div className="space-y-2.5">
+                  {[
+                    { step: 'Escalón 1', amount: '+ARS 700K/mes', trigger: 'Al alcanzar 750 PdV generados por marketing' },
+                    { step: 'Escalón 2', amount: '+ARS 700K/mes', trigger: 'Al sumar 1,500 PdV adicionales' },
+                  ].map((s, i) => (
+                    <div key={i} className="p-3 rounded-xl bg-primary-surface">
+                      <p className="text-xs font-mono text-primary/50 mb-0.5">{s.step}</p>
+                      <p className="text-sm font-heading font-bold text-ink">{s.amount}</p>
+                      <p className="text-xs text-ink-2 font-sans">{s.trigger}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       WHAT WE OFFER
+    ============================================================ */
+    function WhatWeOffer() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.off-r', { scrollTrigger: { trigger: ref.current, start: 'top 80%' }, y: 30, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      const offers = [
+        { title: 'Incidencia real', desc: 'Cercanía a decisiones estratégicas y capacidad de influir en el rumbo de la marca.' },
+        { title: 'Trabajo con founders', desc: 'Colaboración directa con el equipo fundador en cada decisión importante.' },
+        { title: 'Autonomía total', desc: 'Libertad para proponer y ejecutar. Sin burocracia ni estructuras pesadas.' },
+        { title: 'Construir desde cero', desc: 'La oportunidad de crear un área con peso real en una compañía en crecimiento.' },
+        { title: 'Expansión regional', desc: 'Una marca con espacio real para crecer fuerte en Argentina, Brasil y México.' },
+        { title: 'Compensación escalable', desc: 'Base + variable + equity. Tu ingreso crece con el impacto que generás.' },
+      ];
+
+      return (
+        <section ref={ref} className="mx-4 md:mx-8 rounded-[32px] bg-primary py-20 md:py-28 px-6 md:px-12 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '28px 28px' }}></div>
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="off-r inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-6">
+                <span className="text-white/70 text-xs font-mono font-medium tracking-wider uppercase">Qué ofrecemos</span>
+              </div>
+              <h2 className="off-r font-heading font-extrabold text-white leading-[1.1] tracking-[-0.03em]" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+                Más que un trabajo. Una{' '}
+                <span className="italic font-medium" style={{ color: '#e0d4ff' }}>misión fundacional.</span>
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {offers.map((o, i) => (
+                <div key={i} className="off-r p-6 rounded-2xl bg-white/[0.08] border border-white/[0.12] card-hover">
+                  <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center mb-3">
+                    <span className="text-xs font-heading font-bold text-white">0{i + 1}</span>
+                  </div>
+                  <h3 className="font-heading font-bold text-white text-[15px] mb-1.5">{o.title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed font-sans">{o.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       APPLY CTA
+    ============================================================ */
+    function ApplySection() {
+      const ref = useRef(null);
+      useEffect(() => {
+        const ctx = gsap.context(() => {
+          gsap.from('.app-r', { scrollTrigger: { trigger: ref.current, start: 'top 80%' }, y: 30, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out' });
+        }, ref);
+        return () => ctx.revert();
+      }, []);
+
+      return (
+        <section ref={ref} id="aplicar" className="py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="app-r inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/8 border border-primary/15 mb-8">
+              <span className="w-2 h-2 rounded-full bg-green-500" style={{ animation: 'pulse-dot 2s infinite' }}></span>
+              <span className="text-primary text-xs font-mono font-medium tracking-wider uppercase">Aplicar ahora</span>
+            </div>
+
+            <h2 className="app-r font-heading font-extrabold text-ink leading-[1.05] tracking-[-0.03em] mb-5"
+                style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
+              Si te entusiasma construir{' '}
+              <span className="italic font-medium text-primary">algo grande,</span>{' '}
+              este rol es para vos.
+            </h2>
+
+            <p className="app-r text-ink-2 text-base leading-relaxed max-w-xl mx-auto mb-8 font-sans">
+              Un producto que cambia el juego. Un equipo con ambición de liderar LATAM. Si encaja con lo que buscás, hablemos.
+            </p>
+
+            <div className="app-r flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="mailto:hiring@deenex.com?subject=Founding Head of Marketing — Aplicación"
+                 className="btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary text-white font-heading font-bold text-base rounded-lg shadow-xl shadow-primary/20">
+                Enviar mi aplicación
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="https://wa.me/5491122334455?text=Hola%2C%20vi%20la%20propuesta%20de%20Founding%20Head%20of%20Marketing%20y%20me%20interesa%20conversar."
+                 className="btn-outline inline-flex items-center justify-center gap-2.5 px-8 py-4 text-ink font-heading font-semibold text-base rounded-lg border-2 border-ink/10">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Hablemos por WhatsApp
+              </a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    function Footer() {
+      return (
+        <footer className="mx-4 md:mx-8 rounded-t-[32px] bg-primary px-6 md:px-12 pt-12 pb-7">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+              <DeenexLogoWhite className="h-5 w-auto" />
+              <div className="flex flex-wrap gap-6">
+                <a href="https://deenex.com" className="text-white/50 text-sm font-sans hover:text-white/80 transition-colors">deenex.com</a>
+                <a href="https://linkedin.com/company/deenex" className="text-white/50 text-sm font-sans hover:text-white/80 transition-colors">LinkedIn</a>
+                <a href="#" className="text-white/50 text-sm font-sans hover:text-white/80 transition-colors">Privacidad</a>
+                <a href="#" className="text-white/50 text-sm font-sans hover:text-white/80 transition-colors">Términos</a>
+              </div>
+            </div>
+            <div className="border-t border-white/[0.1] pt-5 flex flex-col md:flex-row justify-between items-center gap-3">
+              <p className="text-white/30 text-xs font-sans">© 2026 Deenex. Todos los derechos reservados.</p>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400/80" style={{ animation: 'pulse-dot 3s infinite' }}></span>
+                <span className="text-white/30 text-xs font-mono">Sistema operativo</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    /* ============================================================
+       APP
+    ============================================================ */
+    function App() {
+      useEffect(() => { gsap.registerPlugin(ScrollTrigger); }, []);
+      return (
+        <>
+          <Navbar />
+          <Hero />
+          <AboutDeenex />
+          <Opportunity />
+          <Manifesto />
+          <TheRole />
+          <Profile />
+          <Compensation />
+          <WhatWeOffer />
+          <ApplySection />
+          <Footer />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
