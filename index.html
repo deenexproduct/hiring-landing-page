@@ -654,8 +654,8 @@
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                 </div>
                 <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Sueldo base</p>
-                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">ARS 1.000.000</p>
-                <p className="text-ink-3 text-xs mb-3">mensuales (1 millón de pesos argentinos)</p>
+                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">ARS 1.000.000 — 1.500.000</p>
+                <p className="text-ink-3 text-xs mb-3">mensuales</p>
                 <p className="text-ink-2 text-sm leading-relaxed font-sans">Sueldo fijo mensual garantizado. Se ajusta según experiencia, seniority y fit con la etapa de la compañía.</p>
               </div>
 
@@ -665,13 +665,13 @@
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
                 </div>
                 <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Escalera salarial</p>
-                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">+ Comisiones zero</p>
-                <p className="text-ink-3 text-xs mb-3">Tu propio canal de delivery sin comisiones de terceros</p>
-                <p className="text-ink-2 text-xs leading-relaxed font-sans mb-4">Tu sueldo base sube automáticamente cuando se alcanzan estos hitos de crecimiento. Pagás online y gestión completa de tu flota.</p>
+                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">Crecimiento por hitos</p>
+                <p className="text-ink-3 text-xs mb-3">Tu sueldo base sube con los resultados</p>
+                <p className="text-ink-2 text-xs leading-relaxed font-sans mb-4">Tu sueldo base sube automáticamente cuando se alcanzan estos hitos de crecimiento en puntos de venta generados por marketing.</p>
                 <div className="space-y-2.5">
                   {[
-                    { step: 'Escalón 1', amount: '+ARS 700K/mes', trigger: 'Al alcanzar 750 PdV generados por marketing' },
-                    { step: 'Escalón 2', amount: '+ARS 700K/mes', trigger: 'Al sumar 1,500 PdV adicionales' },
+                    { step: 'Escalón 1', amount: '+ARS 700K/mes', trigger: 'Al alcanzar 750 Pto. de vta. generados por marketing' },
+                    { step: 'Escalón 2', amount: '+ARS 700K/mes', trigger: 'Al sumar 1,500 Pto. de vta. adicionales' },
                   ].map((s, i) => (
                     <div key={i} className="p-3 rounded-xl bg-primary-surface">
                       <p className="text-xs font-mono text-primary/50 mb-0.5">{s.step}</p>
@@ -696,10 +696,10 @@
 
                   <div className="space-y-0">
                     {[
-                      ['10-19 PdV', 'ARS 140K × 6m'],
-                      ['20+ PdV', 'ARS 280K × 6m'],
-                      ['50+ PdV', 'ARS 560K × 6m'],
-                      ['100+ PdV', 'ARS 1.05M × 6m'],
+                      ['10-19 Pto. de vta.', 'ARS 140K × 6m'],
+                      ['20+ Pto. de vta.', 'ARS 280K × 6m'],
+                      ['50+ Pto. de vta.', 'ARS 560K × 6m'],
+                      ['100+ Pto. de vta.', 'ARS 1.05M × 6m'],
                     ].map(([label, val], i) => (
                       <div key={i} className="flex justify-between items-center py-2 border-b border-white/[0.12] last:border-0">
                         <span className="text-white/60 text-xs font-sans">{label}</span>
@@ -708,7 +708,7 @@
                     ))}
                   </div>
                   <p className="text-white/40 text-xs mt-3 font-sans leading-relaxed">Se activa por cada cuenta cerrada cuyo origen sea marketing (inbound, contenido, campañas). El bono se cobra durante 6 meses por cada cuenta.</p>
-                  <p className="text-white/30 text-[10px] mt-2 font-sans leading-relaxed">* Solo podrá extenderse por un nuevo período de 6 meses si, en el trimestre evaluado, la cantidad de puntos de venta activos marketing-sourced supera la obtenida en el trimestre inmediatamente anterior.</p>
+                  <p className="text-white/30 text-[10px] mt-2 font-sans leading-relaxed">* Solo podrá extenderse por un nuevo período de 6 meses si, en el trimestre evaluado, la cantidad de Pto. de vta. activos marketing-sourced supera la obtenida en el trimestre inmediatamente anterior. El esquema busca premiar no solo la generación de resultados, sino también la capacidad de sostener una curva de crecimiento ascendente.</p>
                 </div>
               </div>
             </div>
@@ -721,7 +721,7 @@
                   <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-1">0.5% — 2.5%</p>
                   <p className="text-ink-3 text-xs">de participación en Deenex</p>
                 </div>
-                <p className="text-ink-2 text-sm leading-relaxed font-sans max-w-lg">Participación accionaria real en la compañía, con vesting progresivo. Sos dueño/a de una parte de Deenex y crecés junto con la empresa a medida que escala.</p>
+                <p className="text-ink-2 text-sm leading-relaxed font-sans max-w-lg">Participación accionaria real en la compañía, con vesting progresivo. El porcentaje exacto depende del expertise, la experiencia y el fit con el equipo — se define después de conocernos.</p>
               </div>
             </div>
           </div>
