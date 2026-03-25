@@ -257,7 +257,7 @@
             </h1>
 
             <p className="hero-el text-white/60 text-base md:text-xl leading-relaxed max-w-2xl mx-auto mb-10 font-sans">
-              Construí el área de marketing desde cero en la plataforma que está redefiniendo el canal propio para cadenas gastronómicas en LATAM.
+              Construí el área de marketing desde cero en la plataforma que está redefiniendo el estándar del canal online propio en LATAM.
             </p>
 
             <div className="hero-el flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -306,12 +306,12 @@
               <div>
                 <h2 className="font-heading font-extrabold text-ink leading-[1.05] tracking-[-0.03em] mb-5"
                     style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}>
-                  Deenex es el{' '}
-                  <span className="italic font-medium text-primary">sistema operativo</span>{' '}
-                  para cadenas gastronómicas.
+                  Deenex integra ventas, fidelización y{' '}
+                  <span className="italic font-medium text-primary">marketing</span>{' '}
+                  en una sola plataforma
                 </h2>
                 <p className="text-ink-2 text-base leading-relaxed font-sans">
-                  Somos una plataforma tecnológica que permite a cadenas de restaurantes lanzar su propio canal de ventas digital, capturar datos de sus clientes, fidelizarlos y comunicarse de forma directa. No vendemos "una app" — vendemos un sistema para transformar ventas en base de datos propia y esa base en recurrencia y rentabilidad.
+                  Somos una plataforma SaaS B2B que permite a las marcas de venta de productos de consumo masivo lanzar su propio canal de venta digital, capturar datos de sus clientes, fidelizarlos y comunicarse de forma directa y fácil. No vendemos "una app" — vendemos un sistema para transformar ventas en base de datos propia y esa base en recurrencia y rentabilidad.
                 </p>
               </div>
 
@@ -341,10 +341,10 @@
             {/* Traction metrics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
               {[
-                { val: '100+', label: 'Puntos de venta activos' },
-                { val: '20K+', label: 'Usuarios en la plataforma' },
-                { val: '5+', label: 'Cadenas reconocidas' },
-                { val: 'Feb 2026', label: 'Producto estable' },
+                { val: '200+', label: 'Puntos de venta activos' },
+                { val: '300K+', label: 'Usuarios en la plataforma' },
+                { val: '5+', label: 'Marcas grandes y reconocidas' },
+                { val: 'Feb 2026', label: 'Producto listo para distribuir desde' },
               ].map((m, i) => (
                 <div key={i} className="p-5 rounded-2xl bg-white border border-border text-center card-hover">
                   <p className="font-heading font-extrabold text-primary text-2xl md:text-3xl tracking-tight mb-1">{m.val}</p>
@@ -355,9 +355,9 @@
 
             {/* Clients strip */}
             <div className="mb-14">
-              <p className="text-center text-ink-3 text-xs font-mono tracking-wider uppercase mb-5">Marcas que ya usan Deenex</p>
+              <p className="text-center text-ink-3 text-xs font-mono tracking-wider uppercase mb-5">Marcas líderes ya usan Deenex</p>
               <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-                {['Somos Palta', 'La Fábrica', 'QUEM', 'Monti', 'Coquitos'].map((name, i) => (
+                {['Somos Palta', 'La Fábrica', 'QUEM', 'Monti', 'Coquitos', 'Glorias', 'Emplatame', 'La UTE'].map((name, i) => (
                   <div key={i} className="px-5 py-2.5 rounded-full bg-white border border-border text-ink font-heading font-semibold text-sm">
                     {name}
                   </div>
@@ -648,7 +648,7 @@
             </p>
 
             <div className="grid md:grid-cols-3 gap-5">
-              {/* Base */}
+              {/* Sueldo Base */}
               <div className="comp-r p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
                 <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
@@ -659,14 +659,37 @@
                 <p className="text-ink-2 text-sm leading-relaxed font-sans">Sueldo fijo mensual garantizado. Se ajusta según experiencia, seniority y fit con la etapa de la compañía.</p>
               </div>
 
-              {/* Variable — highlighted */}
+              {/* Escalera Salarial */}
+              <div className="comp-r p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
+                <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+                </div>
+                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Escalera salarial</p>
+                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">+ Comisiones zero</p>
+                <p className="text-ink-3 text-xs mb-3">Tu propio canal de delivery sin comisiones de terceros</p>
+                <p className="text-ink-2 text-xs leading-relaxed font-sans mb-4">Tu sueldo base sube automáticamente cuando se alcanzan estos hitos de crecimiento. Pagás online y gestión completa de tu flota.</p>
+                <div className="space-y-2.5">
+                  {[
+                    { step: 'Escalón 1', amount: '+ARS 700K/mes', trigger: 'Al alcanzar 750 PdV generados por marketing' },
+                    { step: 'Escalón 2', amount: '+ARS 700K/mes', trigger: 'Al sumar 1,500 PdV adicionales' },
+                  ].map((s, i) => (
+                    <div key={i} className="p-3 rounded-xl bg-primary-surface">
+                      <p className="text-xs font-mono text-primary/50 mb-0.5">{s.step}</p>
+                      <p className="text-sm font-heading font-bold text-ink">{s.amount}</p>
+                      <p className="text-xs text-ink-2 font-sans">{s.trigger}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bonos Extra — highlighted */}
               <div className="comp-r p-6 md:p-7 rounded-[28px] bg-primary text-white card-hover relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #ffffff, transparent)', transform: 'translate(30%, -30%)' }}></div>
                 <div className="relative z-10">
                   <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center mb-4">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                   </div>
-                  <p className="font-mono text-white/50 text-xs tracking-wider uppercase mb-2">Variable mensual</p>
+                  <p className="font-mono text-white/50 text-xs tracking-wider uppercase mb-2">Bonos extra</p>
                   <p className="font-heading font-extrabold text-white text-2xl tracking-tight mb-0.5">Hasta 1M+</p>
                   <p className="text-white/50 text-xs mb-2">mensuales adicionales</p>
                   <p className="text-white/70 text-sm mb-4 font-sans leading-relaxed">Cada cuenta nueva que se cierre gracias a marketing genera un bono acumulable durante 6 meses. Cuantos más puntos de venta sumes, más ganás.</p>
@@ -685,33 +708,20 @@
                     ))}
                   </div>
                   <p className="text-white/40 text-xs mt-3 font-sans leading-relaxed">Se activa por cada cuenta cerrada cuyo origen sea marketing (inbound, contenido, campañas). El bono se cobra durante 6 meses por cada cuenta.</p>
+                  <p className="text-white/30 text-[10px] mt-2 font-sans leading-relaxed">* Solo podrá extenderse por un nuevo período de 6 meses si, en el trimestre evaluado, la cantidad de puntos de venta activos marketing-sourced supera la obtenida en el trimestre inmediatamente anterior.</p>
                 </div>
               </div>
+            </div>
 
-              {/* Equity */}
-              <div className="comp-r p-6 md:p-7 rounded-[28px] bg-white border border-border card-hover">
-                <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center mb-4">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5423E7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+            {/* Equity — separate section below */}
+            <div className="comp-r mt-5 p-6 md:p-7 rounded-[28px] bg-primary/[0.04] border border-primary/10 card-hover">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <p className="font-mono text-primary/60 text-xs tracking-wider uppercase mb-2">Equity</p>
+                  <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-1">0.5% — 2.5%</p>
+                  <p className="text-ink-3 text-xs">de participación en Deenex</p>
                 </div>
-                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Equity + Escalera salarial</p>
-                <p className="font-heading font-extrabold text-ink text-2xl tracking-tight mb-0.5">0.5% — 2.5%</p>
-                <p className="text-ink-3 text-xs mb-3">de participación en Deenex</p>
-                <p className="text-ink-2 text-sm leading-relaxed font-sans mb-4">Participación accionaria real en la compañía, con vesting progresivo. Esto significa que sos dueño/a de una parte de Deenex y crecés junto con la empresa a medida que escala.</p>
-
-                <p className="font-mono text-ink-3 text-xs tracking-wider uppercase mb-2">Escalera salarial</p>
-                <p className="text-ink-2 text-xs leading-relaxed font-sans mb-3">Tu sueldo base sube automáticamente cuando se alcanzan estos hitos de crecimiento:</p>
-                <div className="space-y-2.5">
-                  {[
-                    { step: 'Escalón 1', amount: '+ARS 700K/mes', trigger: 'Al alcanzar 750 PdV generados por marketing' },
-                    { step: 'Escalón 2', amount: '+ARS 700K/mes', trigger: 'Al sumar 1,500 PdV adicionales' },
-                  ].map((s, i) => (
-                    <div key={i} className="p-3 rounded-xl bg-primary-surface">
-                      <p className="text-xs font-mono text-primary/50 mb-0.5">{s.step}</p>
-                      <p className="text-sm font-heading font-bold text-ink">{s.amount}</p>
-                      <p className="text-xs text-ink-2 font-sans">{s.trigger}</p>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-ink-2 text-sm leading-relaxed font-sans max-w-lg">Participación accionaria real en la compañía, con vesting progresivo. Sos dueño/a de una parte de Deenex y crecés junto con la empresa a medida que escala.</p>
               </div>
             </div>
           </div>
