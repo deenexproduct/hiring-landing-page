@@ -713,6 +713,108 @@
               </div>
             </div>
 
+            {/* How it works — practical breakdown */}
+            <div className="comp-r mt-10 mb-5">
+              <div className="text-center mb-8">
+                <p className="font-mono text-primary/60 text-xs tracking-wider uppercase mb-3">Cómo funciona en la práctica</p>
+                <h3 className="font-heading font-extrabold text-ink leading-[1.1] tracking-[-0.02em]" style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}>
+                  Tu compensación crece por{' '}
+                  <span className="italic font-medium text-primary">objetivos concretos</span>
+                </h3>
+              </div>
+
+              {/* Step-by-step objective view */}
+              <div className="space-y-4">
+                {/* Step 1 — Day 1 */}
+                <div className="comp-r p-5 md:p-6 rounded-2xl bg-white border border-border">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-heading font-bold text-primary">01</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-heading font-bold text-ink text-sm mb-1">Día 1 — Arrancás con tu sueldo base</p>
+                      <p className="text-ink-2 text-xs font-sans leading-relaxed mb-2">Desde el primer día cobrás entre ARS 980.000 y ARS 1.400.000 mensuales, según tu seniority y experiencia. Es tu ingreso fijo garantizado, sin condiciones.</p>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-surface">
+                        <span className="text-primary font-heading font-bold text-sm">ARS 980K — 1.4M/mes</span>
+                        <span className="text-ink-3 text-[10px] font-sans">fijo garantizado</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 2 — First accounts */}
+                <div className="comp-r p-5 md:p-6 rounded-2xl bg-white border border-border">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-heading font-bold text-primary">02</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-heading font-bold text-ink text-sm mb-1">Primeras cuentas cerradas — Se activan los bonos</p>
+                      <p className="text-ink-2 text-xs font-sans leading-relaxed mb-2">Cada vez que una cuenta originada por marketing se cierra y activa, ganás un bono mensual adicional durante 6 meses consecutivos. El monto depende de cuántos puntos de venta tiene esa cuenta. Los bonos son acumulables: si cerrás 3 cuentas, cobrás los 3 bonos en paralelo.</p>
+                      <div className="p-3 rounded-xl bg-primary/[0.04] border border-primary/10">
+                        <p className="text-xs font-mono text-primary/50 mb-1.5">Ejemplo concreto</p>
+                        <p className="text-ink-2 text-xs font-sans leading-relaxed">
+                          Si en un trimestre marketing genera <strong>2 cuentas de 25 Pto. de vta.</strong> cada una, eso te suma <strong>ARS 280K/mes × 2 = ARS 560K/mes adicionales</strong> durante 6 meses. Sumado al base de ~1M, tu ingreso mensual pasa a <strong>~1.56M/mes</strong>.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3 — Salary ladder */}
+                <div className="comp-r p-5 md:p-6 rounded-2xl bg-white border border-border">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-heading font-bold text-primary">03</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-heading font-bold text-ink text-sm mb-1">750 Pto. de vta. acumulados — Sube tu base permanentemente</p>
+                      <p className="text-ink-2 text-xs font-sans leading-relaxed mb-2">Cuando el total de puntos de venta activos generados por marketing alcanza 750, tu sueldo base sube ARS 700K/mes de forma permanente. No es un bono temporal — es un aumento fijo.</p>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-surface">
+                        <span className="text-primary font-heading font-bold text-sm">Base pasa a ~1.7M — 2.1M/mes</span>
+                        <span className="text-ink-3 text-[10px] font-sans">+ bonos activos</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 4 — Second ladder */}
+                <div className="comp-r p-5 md:p-6 rounded-2xl bg-white border border-border">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-heading font-bold text-primary">04</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-heading font-bold text-ink text-sm mb-1">2,250 Pto. de vta. acumulados — Segundo escalón</p>
+                      <p className="text-ink-2 text-xs font-sans leading-relaxed mb-2">Al sumar 1,500 puntos de venta adicionales (total 2,250), tu base sube otros ARS 700K/mes. A esta altura, tu sueldo base fijo ya supera los 2.4M mensuales, más los bonos que sigan activos.</p>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-surface">
+                        <span className="text-primary font-heading font-bold text-sm">Base pasa a ~2.4M — 2.8M/mes</span>
+                        <span className="text-ink-3 text-[10px] font-sans">+ bonos activos</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key clarifications */}
+              <div className="comp-r mt-6 p-5 md:p-6 rounded-2xl bg-primary/[0.03] border border-primary/8">
+                <p className="font-mono text-primary/50 text-xs tracking-wider uppercase mb-3">Detalles importantes</p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {[
+                    { q: '¿Qué es marketing-sourced?', a: 'Una cuenta cuyo primer contacto vino de acciones de marketing: inbound, contenido, campañas, presencia de marca.' },
+                    { q: '¿Los bonos se acumulan?', a: 'Sí. Si cerrás 5 cuentas en un trimestre, cobrás los 5 bonos en paralelo durante 6 meses cada uno.' },
+                    { q: '¿Cómo se calcula el variable?', a: 'Se evalúa trimestralmente. Los bonos del trimestre empiezan a impactar en el trimestre siguiente.' },
+                    { q: '¿La escalera es permanente?', a: 'Sí. Cada escalón sube tu base fija de forma permanente. No se revierte.' },
+                  ].map((item, i) => (
+                    <div key={i} className="p-3 rounded-xl bg-white">
+                      <p className="font-heading font-bold text-ink text-xs mb-1">{item.q}</p>
+                      <p className="text-ink-2 text-[11px] font-sans leading-relaxed">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Equity — separate section below */}
             <div className="comp-r mt-5 p-6 md:p-7 rounded-[28px] bg-primary/[0.04] border border-primary/10 card-hover">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
